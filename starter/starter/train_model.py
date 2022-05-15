@@ -1,13 +1,10 @@
 # Script to train machine learning model.
-
 from sklearn.model_selection import train_test_split
-
 # Add the necessary imports for the starter code.
 from ml.model import compute_model_metrics, inference, compute_model_performance, train_model, save_model
 from ml.data import process_data
 import pandas as pd
 import logging
-import joblib
 
 # Add code to load in the data.
 logging.info("Reading the Data...")
