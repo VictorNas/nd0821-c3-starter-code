@@ -104,15 +104,10 @@ def load_model(path):
                Trained sklearn LabelBinarizer.
         """
 
-    files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
-    # check if all files are in the path
-    if(not all(file in files for file in ['rfc_model.pkl','encoder.pkl', 'lb.pkl'])):
-         raise AssertionError (f"One of the files ['rfc_model.pkl','encoder.pkl', 'lb.pkl'] are not in {path}")
-    else:
-        model = joblib.load(os.path.join(path, 'rfc_model.pkl'))
-        encoder = joblib.load( os.path.join(path, 'encoder.pkl'))
-        lb = joblib.load(os.path.join(path, 'lb.pkl'))
+    model = joblib.load(os.path.join(path, 'rfc_model.pkl'))
+    encoder = joblib.load( os.path.join(path, 'encoder.pkl'))
+    lb = joblib.load(os.path.join(path, 'lb.pkl'))
 
     return model, encoder, lb
 
