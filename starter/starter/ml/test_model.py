@@ -30,12 +30,12 @@ def test_inference():
     preds = inference(model, X)
     assert preds.shape[0] == X.shape[0], 'expected one pred for each row in X'
 
-def test_save_model():
-    save_model(model ,encoder, lb, path)
-    files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
-    assert 'rfc_model.pkl' in files, 'rfc_model.pkl are not in the specified path'
-    assert 'encoder.pkl' in files, 'encoder.pkl are not in the specified path'
-    assert 'lb.pkl' in files, 'lb.pkl are not in the specified path'
+# def test_save_model():
+#     save_model(model ,encoder, lb, path)
+#     files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+#     assert 'rfc_model.pkl' in files, 'rfc_model.pkl are not in the specified path'
+#     assert 'encoder.pkl' in files, 'encoder.pkl are not in the specified path'
+#     assert 'lb.pkl' in files, 'lb.pkl are not in the specified path'
 
 def test_load_model():
 
