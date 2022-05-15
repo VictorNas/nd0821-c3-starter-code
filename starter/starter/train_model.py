@@ -3,7 +3,7 @@
 from sklearn.model_selection import train_test_split
 
 # Add the necessary imports for the starter code.
-from ml.model import compute_model_metrics, inference, compute_model_performance, train_model
+from ml.model import compute_model_metrics, inference, compute_model_performance, train_model, save_model
 from ml.data import process_data
 import pandas as pd
 import logging
@@ -40,13 +40,13 @@ logging.info("Training a Random Forest Classifier")
 model = train_model(X_train, y_train)
 
 logging.info("Saving the Model")
-joblib.dump(model, '../model/rfc_model.pkl')
+save_model(model, encoder, lb, '../model')
 
 logging.info("Computing the model performance")
 preds = inference(model, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
-performance_slices = compute_model_performance(model, X_test, categorical_features=cat_features,
+performance_slices = compute_model_performance(model, test, categorical_features=cat_features,
                           label="salary", encoder=encoder, lb=lb)
 
 performance_slices = performance_slices.append({'f1': fbeta,

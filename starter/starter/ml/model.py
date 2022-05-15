@@ -1,7 +1,9 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 import pandas as pd
-from data import process_data
+from ml.data import process_data
 from sklearn.ensemble import RandomForestClassifier
+import joblib
+import os
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -19,8 +21,8 @@ def train_model(X_train, y_train):
     model
         Trained machine learning model.
     """
-    model = RandomForestClassifier(n_estimatorsint=500, criterion='gini',
-                                           max_depth=100, max_features='auto', random_state=42)
+    model = RandomForestClassifier(n_estimators=500, criterion='gini',
+                                    max_depth=100, max_features='auto', random_state=42)
     model.fit(X_train, y_train)
 
     return model
@@ -67,6 +69,52 @@ def inference(model, X):
 
     return preds
 
+def save_model( model ,encoder, lb, path ):
+    """ Saves the model, the encoder and the LabelBinarizer in the path.
+
+    Inputs
+       ------
+       model : sklearn.ensemble._forest.RandomForestClassifier
+               Trained machine learning model.
+       encoder : sklearn.preprocessing._encoders.OneHotEncoder
+           Trained sklearn OneHotEncoder.
+       lb : sklearn.preprocessing._label.LabelBinarizer
+           Trained sklearn LabelBinarizer.
+       path : str
+           Path where to save the model
+    """
+    joblib.dump(model, os.path.join(path, 'rfc_model.pkl'))
+    joblib.dump(encoder, os.path.join(path, 'encoder.pkl'))
+    joblib.dump(lb, os.path.join(path, 'lb.pkl'))
+
+def load_model(path):
+    """ Loads the model, the encoder and the LabelBinarizer.
+        Inputs
+           ------
+           path : str
+               Path where the model is stored
+
+        Returns
+            -------
+            model : sklearn.ensemble._forest.RandomForestClassifier
+               Trained machine learning model.
+           encoder : sklearn.preprocessing._encoders.OneHotEncoder
+               Trained sklearn OneHotEncoder.
+           lb : sklearn.preprocessing._label.LabelBinarizer
+               Trained sklearn LabelBinarizer.
+        """
+
+    files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+
+    # check if all files are in the path
+    if(not all(file in files for file in ['rfc_model.pkl','encoder.pkl', 'lb.pkl'])):
+         raise AssertionError (f"One of the files ['rfc_model.pkl','encoder.pkl', 'lb.pkl'] are not in {path}")
+    else:
+        model = joblib.load(os.path.join(path, 'rfc_model.pkl'))
+        encoder = joblib.load( os.path.join(path, 'encoder.pkl'))
+        lb = joblib.load(os.path.join(path, 'lb.pkl'))
+
+    return model, encoder, lb
 
 def compute_model_performance(model, X, categorical_features=[], label=None, encoder=None, lb=None):
     """ Compute the model performance on slices of the data.
