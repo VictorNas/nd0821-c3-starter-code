@@ -10,7 +10,7 @@ client = TestClient(app)
 def test_greetings():
     r = client.get("/")
     assert r.status_code == 200
-
+    assert r.json() == {"greeting": "Welcome to Incomer Predictor API!!"}
 def test_predict_item_pos():
     data = {
       "age": 57,
@@ -28,7 +28,7 @@ def test_predict_item_pos():
       "hours-per-week": 40,
       "native-country": "United-States"
     }
-    response = client.get("/predict/", headers=data)
+    response = client.post("/predict/", headers=data)
     assert response.status_code == 200
     assert response.json() == { "preds": [">50K"]}
 
@@ -50,6 +50,6 @@ def test_predict_item_neg():
         "hours-per-week": 0,
         "native-country": "United-States"
          }
-        response = client.get("/predict/", headers=data)
+        response = client.post("/predict/", headers=data)
         assert response.status_code == 200
         assert response.json() == {"preds": ["<=50K"]}
