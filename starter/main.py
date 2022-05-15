@@ -1,15 +1,12 @@
 # Put the code for your API here.
-import sys
-sys.path.append('./starter')
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
-from ml.model import load_model
+from starter.ml.model import load_model
 from predict import predict
 
 # load the model
-model, encoder, lb = load_model('./model')
+model, encoder, lb = load_model('./starter/model')
 
 # Declare the data object with its components and their type.
 def alias_function(x : str) -> str:

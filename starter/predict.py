@@ -1,8 +1,5 @@
-import sys
-sys.path.append('./starter')
-
-from ml.data import process_data
-from ml.model import inference
+from starter.ml.data import process_data
+from starter.ml.model import inference
 
 def predict(item ,model, encoder, lb ):
     cat_features = [ "workclass",

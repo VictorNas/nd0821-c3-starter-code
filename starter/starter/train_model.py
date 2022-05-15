@@ -8,7 +8,7 @@ import logging
 
 # Add code to load in the data.
 logging.info("Reading the Data...")
-data = pd.read_csv('../data/census_clean.csv')
+data = pd.read_csv('starter/data/census_clean.csv')
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 logging.info("Splitting the Data into train a test sets...")
 train, test = train_test_split(data, test_size=0.20)
@@ -37,7 +37,7 @@ logging.info("Training a Random Forest Classifier")
 model = train_model(X_train, y_train)
 
 logging.info("Saving the Model")
-save_model(model, encoder, lb, '../model')
+save_model(model, encoder, lb, 'starter/model/')
 
 logging.info("Computing the model performance")
 preds = inference(model, X_test)
@@ -53,4 +53,4 @@ performance_slices = performance_slices.append({'f1': fbeta,
                                                  ignore_index=True)
 logging.info("Saving Model Performance...")
 
-performance_slices.to_csv('../model/model_performance.csv')
+performance_slices.to_csv('starter/model/model_performance.csv')

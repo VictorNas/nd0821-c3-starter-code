@@ -1,6 +1,4 @@
-import sys
-sys.path.append('../starter')
-from ml.data import process_data
+from .data import process_data
 import pandas as pd
 
 cat_features = [
@@ -15,7 +13,7 @@ cat_features = [
 ]
 
 def test_process_data():
-    data = pd.read_csv('../data/census_clean.csv')
+    data = pd.read_csv('starter/data/census_clean.csv')
     X, y, encoder, lb = process_data(
         data, categorical_features=cat_features, label="salary", training=True
     )

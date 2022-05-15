@@ -1,7 +1,5 @@
-import sys
-sys.path.append('../starter')
-from ml.model import load_model, save_model, inference, train_model
-from ml.data import process_data
+from .model import load_model, save_model, inference, train_model
+from .data import process_data
 import pandas as pd
 import os
 
@@ -16,7 +14,7 @@ cat_features = [
     "sex",
     "native-country",
 ]
-data = pd.read_csv('../data/census_clean.csv')
+data = pd.read_csv('starter/data/census_clean.csv')
 
 X, y, encoder, lb = process_data(
         data, categorical_features=cat_features, label="salary", training=True

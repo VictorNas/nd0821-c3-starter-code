@@ -28,7 +28,7 @@ def test_predict_item_pos():
       "hours-per-week": 40,
       "native-country": "United-States"
     }
-    response = client.post("/predict/", headers=data)
+    response = client.post("/predict/", json=data)
     assert response.status_code == 200
     assert response.json() == { "preds": [">50K"]}
 
@@ -50,6 +50,6 @@ def test_predict_item_neg():
         "hours-per-week": 0,
         "native-country": "United-States"
          }
-        response = client.post("/predict/", headers=data)
+        response = client.post("/predict/", json=data)
         assert response.status_code == 200
         assert response.json() == {"preds": ["<=50K"]}
