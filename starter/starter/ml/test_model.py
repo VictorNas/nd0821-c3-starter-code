@@ -3,7 +3,7 @@ from .data import process_data
 import pandas as pd
 import os
 
-path = './'
+path = './starter/model'
 cat_features = [
     "workclass",
     "education",
