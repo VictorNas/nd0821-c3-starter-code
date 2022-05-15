@@ -8,6 +8,8 @@ import os
 import logging
 
 # load the model
+print(os.listdir('./'))
+print(os.listdir('./starter'))
 print(os.listdir('./starter/model'))
 logging.info(str(os.listdir('./starter/model')))
 model, encoder, lb = load_model('./starter/model')
