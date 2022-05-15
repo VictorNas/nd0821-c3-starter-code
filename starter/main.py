@@ -4,8 +4,12 @@ from pydantic import BaseModel
 import pandas as pd
 from starter.ml.model import load_model
 from predict import predict
+import os
+import logging
 
 # load the model
+print(os.listdir('./starter/model'))
+logging.info(str(os.listdir('./starter/model')))
 model, encoder, lb = load_model('./starter/model')
 
 # Declare the data object with its components and their type.
