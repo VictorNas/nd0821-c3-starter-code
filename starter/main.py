@@ -6,7 +6,7 @@ from starter.ml.model import load_model
 from predict import predict
 
 # load the model
-model, encoder, lb = load_model('starter/model')
+model, encoder, lb = load_model('starter/starter/model')
 
 # Declare the data object with its components and their type.
 def alias_function(x : str) -> str:

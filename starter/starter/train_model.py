@@ -8,7 +8,7 @@ import logging
 
 # Add code to load in the data.
 logging.info("Reading the Data...")
-data = pd.read_csv('starter/data/census_clean.csv')
+data = pd.read_csv('starter/starter/data/census_clean.csv')
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 logging.info("Splitting the Data into train a test sets...")
 train, test = train_test_split(data, test_size=0.20)
