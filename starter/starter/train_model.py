@@ -5,6 +5,7 @@ from ml.model import compute_model_metrics, inference, compute_model_performance
 from ml.data import process_data
 import pandas as pd
 import logging
+import numpy as np
 
 # Add code to load in the data.
 logging.info("Reading the Data...")
@@ -54,3 +55,6 @@ performance_slices = performance_slices.append({'f1': fbeta,
 logging.info("Saving Model Performance...")
 
 performance_slices.to_csv('starter/model/model_performance.csv')
+
+numpy_array = performance_slices.to_numpy()
+np.savetxt("starter/model/slice_output.txt", performance_slices, fmt = "%s")
