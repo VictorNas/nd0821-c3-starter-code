@@ -12,7 +12,7 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
         exit("dvc pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
 # load the model
-model, encoder, lb = load_model('./starter/starter/model')
+model, encoder, lb = load_model('./starter/model')
 
 # Declare the data object with its components and their type.
 def alias_function(x : str) -> str:
