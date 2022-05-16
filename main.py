@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
-from starter.ml.model import load_model
+from starter.starter.ml.model import load_model
 from predict import predict
 import os
 
